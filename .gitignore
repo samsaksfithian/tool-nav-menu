@@ -23,6 +23,8 @@ junit.xml
 
 # misc
 *.pem
+!.vscode/launch.json
+!.vscode/settings.json
 
 # debug
 npm-debug.log*
