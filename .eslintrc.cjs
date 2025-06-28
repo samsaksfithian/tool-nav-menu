@@ -12,6 +12,8 @@ module.exports = {
     ecmaVersion: 2024,
     sourceType: "module",
     ecmaFeatures: { jsx: true },
+    projectService: { allowDefaultProject: ["*.cjs"] },
+    tsconfigRootDir: __dirname,
   },
   globals: {
     page: "writable",
@@ -27,6 +29,7 @@ module.exports = {
     "react-hooks",
     "@typescript-eslint",
     "import",
+    "simple-import-sort",
     "prettier",
     "jsx-a11y",
   ],
@@ -37,8 +40,9 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:react-hooks/recommended",
-    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-type-checked",
     "plugin:@next/next/recommended",
+    "plugin:@next/next/core-web-vitals",
     // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
     "prettier",
     // This will display prettier errors as ESLint errors.
@@ -46,5 +50,21 @@ module.exports = {
   ],
   rules: {
     "react/react-in-jsx-scope": "off",
+    // "react/jsx-sort-props": "warn",
+    "simple-import-sort/exports": "warn",
+    "simple-import-sort/imports": [
+      "warn",
+      { groups: [["^\\u0000", "^node:", "^@?\\w", "^", "^\\."]] },
+    ],
+    "@typescript-eslint/consistent-type-exports": "warn",
+    "@typescript-eslint/consistent-type-imports": "warn",
+    "@typescript-eslint/prefer-nullish-coalescing": [
+      "warn",
+      {
+        ignoreConditionalTests: true,
+        ignorePrimitives: { string: true },
+        ignoreTernaryTests: true,
+      },
+    ],
   },
 };
